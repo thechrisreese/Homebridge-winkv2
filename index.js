@@ -50,7 +50,7 @@ module.exports = function (homebridge) {
 	WinkSprinklerAccessory = require('./accessories/sprinkler')(WinkAccessory, Accessory, Service, Characteristic, UUIDGen);
 
 
-	homebridge.registerPlatform("homebridge-wink", "Wink", WinkPlatform, false);
+	homebridge.registerPlatform("homebridge-winkv2", "Wink", WinkPlatform, false);
 };
 
 function WinkPlatform(log, config) {

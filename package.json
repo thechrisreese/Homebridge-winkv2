@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "homebridge-wink",
+        "scope": null,
+        "escapedName": "homebridge-wink",
+        "name": "homebridge-wink",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/TVMac"
+    ]
+  ],
+  "_from": "homebridge-wink@latest",
+  "_id": "homebridge-wink@1.1.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/homebridge-wink",
+  "_nodeVersion": ">=0.12.8",
+  "_npmUser": {
+    "name": "kraigm",
+    "email": "kraigm@enferra.com"
+  },
+  "_npmVersion": "2.14.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "homebridge-wink",
+    "scope": null,
+    "escapedName": "homebridge-wink",
+    "name": "homebridge-wink",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/homebridge-wink/-/homebridge-wink-1.1.1.tgz",
+  "_shasum": "add3b2f018bb2bae19513fdd4ee8419171d3c395",
+  "_shrinkwrap": null,
+  "_spec": "homebridge-wink",
+  "_where": "/Users/TVMac",
+  "bugs": {
+    "url": "https://github.com/kraigm/homebridge-wink/issues"
+  },
+  "dependencies": {
+    "wink-js": ">=0.1.0 <1.0.0"
+  },
+  "description": "HomeBridge plugin for the Wink hub",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "add3b2f018bb2bae19513fdd4ee8419171d3c395",
+    "tarball": "https://registry.npmjs.org/homebridge-wink/-/homebridge-wink-1.1.1.tgz"
+  },
+  "engines": {
+    "homebridge": ">=0.2.5",
+    "node": ">=0.12.0"
+  },
+  "gitHead": "789cdffe24bc5cdb2cb95c4a3fb1c94deb5617d3",
+  "homepage": "https://github.com/kraigm/homebridge-wink#readme",
+  "keywords": [
+    "homebridge-plugin",
+    "wink"
+  ],
+  "license": "ISC",
+  "maintainers": [
+    {
+      "name": "kraigm",
+      "email": "kraigm@enferra.com"
+    }
+  ],
+  "name": "homebridge-wink",
+  "optionalDependencies": {},
+  "preferGlobal": true,
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kraigm/homebridge-wink.git"
+  },
+  "scripts": {},
+  "version": "1.1.1"
+}

@@ -109,24 +109,10 @@ function WinkThermostatAccessory(platform, device) {
 		.getService(Service.Thermostat)
 		.getCharacteristic(Characteristic.TargetTemperature)
 		.on('get', function (callback) {
-			if (Characteristic.TargetHeatingCoolingState.AUTO)
-				callback (null);
-			else {
-				if (that.device.last_reading.heat_active)
-					callback(null, that.device.desired_state.max_set_point);
-				else
-					callback(null, that.device.desired_state.min_set_point);
-				};
+			callback(null, that.device.desired_state.min_set_point);
 		})
 		.on('set', function (value, callback) {
-			if (Characteristic.TargetHeatingCoolingState.AUTO)
-				callback (null);
-			else {
-				if (that.device.last_reading.heat_active)
-					that.updateWinkProperty(callback, "max_set_point", value);
-				else
-					that.updateWinkProperty(callback, "min_set_point", value);
-			};
+			that.updateWinkProperty(callback, ["min_set_point", "max_set_point"], [value, value + 0.5555556]);
 		});
 
 	this
@@ -143,7 +129,7 @@ function WinkThermostatAccessory(platform, device) {
 		.getService(Service.Thermostat)
 		.getCharacteristic(Characteristic.HeatingThresholdTemperature)
 		.on('get', function (callback) {
-			callback(null, that.device.desired_state.min_set_point);
+			callback(null, that.device.last_reading.min_set_point);
 		})
 		.on('set', function (value, callback) {
 			that.updateWinkProperty(callback, "min_set_point", value);
@@ -153,14 +139,11 @@ function WinkThermostatAccessory(platform, device) {
 		.getService(Service.Thermostat)
 		.getCharacteristic(Characteristic.CoolingThresholdTemperature)
 		.on('get', function (callback) {
-			callback(null, that.device.desired_state.max_set_point);
+			callback(null, that.device.last_reading.max_set_point);
 		})
 		.on('set', function (value, callback) {
 			that.updateWinkProperty(callback, "max_set_point", value);
 		});
-
-
-
 
 	if (that.device.last_reading.humidity !== undefined)
 		this
@@ -196,8 +179,6 @@ function WinkThermostatAccessory(platform, device) {
 }
 
 var loadData = function () {
-	
-
 	this
 		.getService(Service.Thermostat)
 		.getCharacteristic(Characteristic.CurrentHeatingCoolingState)
@@ -249,26 +230,3 @@ var loadData = function () {
 			.getValue();
 	}
 };
-
-
-
-//Service.Thermostat = function(displayName, subtype) {
-  //Service.call(this, displayName, '0000004A-0000-1000-8000-0026BB765291', subtype);
-
-  // Required Characteristics
- // this.addCharacteristic(Characteristic.CurrentHeatingCoolingState);
- // this.addCharacteristic(Characteristic.TargetHeatingCoolingState);
-  //this.addCharacteristic(Characteristic.CurrentTemperature);
-  //this.addCharacteristic(Characteristic.TargetTemperature);
-  //this.addCharacteristic(Characteristic.TemperatureDisplayUnits);
-
-  // Optional Characteristics
- // this.addOptionalCharacteristic(Characteristic.CurrentRelativeHumidity);
- // this.addOptionalCharacteristic(Characteristic.TargetRelativeHumidity);
- // this.addOptionalCharacteristic(Characteristic.CoolingThresholdTemperature);
- // this.addOptionalCharacteristic(Characteristic.HeatingThresholdTemperature);
- // this.addOptionalCharacteristic(Characteristic.Name);
-
-//inherits(Service.Thermostat, Service);
-
-//Service.Thermostat.UUID = '0000004A-0000-1000-8000-0026BB765291';

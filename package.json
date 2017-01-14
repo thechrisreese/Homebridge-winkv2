@@ -14,7 +14,7 @@
     ]
   ],
   "_from": "homebridge-winkv2@latest",
-  "_id": "homebridge-winkv2@1.0.0",
+  "_id": "homebridge-winkv2@1.0.2",
   "_inCache": true,
   "_installable": true,
   "_location": "/homebridge-winkv2",
@@ -81,5 +81,5 @@
     "url": "git://github.com/thechrisreese/homebridge-winkv2.git"
   },
   "scripts": {},
-  "version": "1.0.1"
+  "version": "1.0.2"
 }

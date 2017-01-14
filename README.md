@@ -1,5 +1,6 @@
 FIRST: All Credit to KraigM for developing Homebridge-Wink. This repo is forked from him and built out for additional functions that are only valuable to a few people that want motion detection and canary status. 
 
+SECOND: This is super beta and hacked together to try and get a bunch of additional accessories running. Please forgive the rough work, it is my test setup so I can have more motion sensors, cameras, doorbells, canary status, and water sensors running. Dont get mad if things arent perfect. Instead, help fix them! 
 
 # Homebridge-winkv2
 

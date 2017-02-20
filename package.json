@@ -62,7 +62,7 @@
     "url": "https://github.com/thechrisreese/homebridge-winkv2/issues"
   },
   "dependencies": {
-    "wink-jsV2": ">=0.0.1 <1.0.0"
+    "wink-jsv2": ">=0.0.1 <1.0.0"
   },
   "description": "HomeBridge plugin for the Wink hub based on KraigM Homebridge-wink",
   "devDependencies": {},

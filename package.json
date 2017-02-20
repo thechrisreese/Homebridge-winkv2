@@ -11,19 +11,35 @@
         "type": "tag"
       },
       "/Users/TVMac"
+    ],
+    [
+      {
+        "raw": "homebridge-winkv2",
+        "scope": null,
+        "escapedName": "homebridge-winkv2",
+        "name": "homebridge-winkv2",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      ""
     ]
   ],
-  "_from": "homebridge-winkv2@latest",
-  "_id": "homebridge-winkv2@1.0.2",
+  "_from": "homebridge-winkv2",
+  "_id": "homebridge-winkv2@1.0.3",
   "_inCache": true,
   "_installable": true,
   "_location": "/homebridge-winkv2",
-  "_nodeVersion": ">=0.12.8",
+  "_nodeVersion": "6.9.2",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/homebridge-winkv2-1.0.0.tgz_1483212498150_0.26847219467163086"
+  },
   "_npmUser": {
     "name": "thechrisreese",
     "email": "thechrisreese@icloud.com"
   },
-  "_npmVersion": "2.14.9",
+  "_npmVersion": "3.10.9",
   "_phantomChildren": {},
   "_requested": {
     "raw": "homebridge-winkv2",
@@ -37,11 +53,11 @@
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/homebridge-wink/-/homebridge-wink-1.1.1.tgz",
-  "_shasum": "add3b2f018bb2bae19513fdd4ee8419171d3c395",
+  "_resolved": "https://registry.npmjs.org/homebridge-winkv2/-/homebridge-winkv2-1.0.0.tgz",
+  "_shasum": "8eca83d64f1acc7c621deb54e0838b3e8ec914d2",
   "_shrinkwrap": null,
   "_spec": "homebridge-winkv2",
-  "_where": "/Users/TVMac",
+  "_where": "",
   "bugs": {
     "url": "https://github.com/thechrisreese/homebridge-winkv2/issues"
   },
@@ -52,8 +68,8 @@
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "add3b2f018bb2bae19513fdd4ee8419171d3c395",
-    "tarball": "https://registry.npmjs.org/homebridge-wink/-/homebridge-wink-1.1.1.tgz"
+    "shasum": "8eca83d64f1acc7c621deb54e0838b3e8ec914d2",
+    "tarball": "https://registry.npmjs.org/homebridge-winkv2/-/homebridge-winkv2-1.0.0.tgz"
   },
   "engines": {
     "homebridge": ">=0.2.5",
@@ -81,5 +97,5 @@
     "url": "git://github.com/thechrisreese/homebridge-winkv2.git"
   },
   "scripts": {},
-  "version": "1.0.2"
+  "version": "1.0.0"
 }

@@ -1,4 +1,4 @@
-var wink = require('wink-js');
+var wink = require('wink-jsV2');
 var inherits = require('util').inherits;
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
@@ -46,7 +46,7 @@ function WinkLightAccessory(platform, device) {
 			that.updateWinkProperty(callback, "powered", value);
 		});
 
-	if (that.device.desired_state.brightness !== undefined)
+	if (that.device.last_reading.brightness !== undefined)
 		this
 			.getService(Service.Lightbulb)
 			.getCharacteristic(Characteristic.Brightness)
@@ -59,7 +59,7 @@ function WinkLightAccessory(platform, device) {
 				that.updateWinkProperty(callback, "brightness", that.brightness);
 			});
 
-	if (that.device.desired_state.hue !== undefined)
+	if (that.device.last_reading.hue !== undefined)
 		this
 			.getService(Service.Lightbulb)
 			.getCharacteristic(Characteristic.Hue)
@@ -73,7 +73,7 @@ function WinkLightAccessory(platform, device) {
 											[that.hue, that.saturation, that.brightness, 'hsb']);				
 			});
 
-	if (that.device.desired_state.saturation !== undefined)
+	if (that.device.last_reading.saturation !== undefined)
 		this
 			.getService(Service.Lightbulb)
 			.getCharacteristic(Characteristic.Saturation)
@@ -91,6 +91,11 @@ function WinkLightAccessory(platform, device) {
 }
 
 var loadData = function () {
+	this.getService(Service.AccessoryInformation)
+          .setCharacteristic(Characteristic.Manufacturer, this.device.device_manufacturer)
+          .setCharacteristic(Characteristic.Model, this.device.model_name)
+          .setCharacteristic(Characteristic.SerialNumber, this.entity_id);
+	
 	this.getService(Service.Lightbulb)
 		.getCharacteristic(Characteristic.On)
 		.getValue();

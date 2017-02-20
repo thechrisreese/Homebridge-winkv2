@@ -1,4 +1,4 @@
-var wink = require('wink-js');
+var wink = require('wink-jsV2');
 var inherits = require('util').inherits;
 
 /*
@@ -47,6 +47,11 @@ function WinkSprinklerAccessory(platform, device) {
 }
 
 var loadData = function () {
+	this.getService(Service.AccessoryInformation)
+          .setCharacteristic(Characteristic.Manufacturer, this.device.device_manufacturer)
+          .setCharacteristic(Characteristic.Model, this.device.model_name)
+          .setCharacteristic(Characteristic.SerialNumber, this.entity_id);
+	
 	this.getService(Service.Switch)
 		.getCharacteristic(Characteristic.On)
 		.getValue();

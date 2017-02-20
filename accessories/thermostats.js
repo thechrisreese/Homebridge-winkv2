@@ -1,3 +1,4 @@
+var wink = require('wink-jsV2');
 var inherits = require('util').inherits;
 
 var WinkAccessory, Accessory, Service, Characteristic, uuid;
@@ -84,15 +85,19 @@ function WinkThermostatAccessory(platform, device) {
 		.on('set', function (value, callback) {
 			switch (value) {
 				case Characteristic.TargetHeatingCoolingState.COOL:
+					console.log("Setting Thermostat to", value),
 					that.updateWinkProperty(callback, ["mode", "powered"], ["cool_only", true]);
 					break;
 				case Characteristic.TargetHeatingCoolingState.HEAT:
+					console.log("Setting Thermostat to", value),
 					that.updateWinkProperty(callback, ["mode", "powered"], ["heat_only", true]);
 					break;
 				case Characteristic.TargetHeatingCoolingState.AUTO:
+					console.log("Setting Thermostat to", value),
 					that.updateWinkProperty(callback, ["mode", "powered"], ["auto", true]);
 					break;
 				case Characteristic.TargetHeatingCoolingState.OFF:
+					console.log("Setting Thermostat to", value),
 					that.updateWinkProperty(callback, "powered", false);
 					break;
 			}
@@ -109,11 +114,30 @@ function WinkThermostatAccessory(platform, device) {
 		.getService(Service.Thermostat)
 		.getCharacteristic(Characteristic.TargetTemperature)
 		.on('get', function (callback) {
-			callback(null, that.device.desired_state.min_set_point);
+			if (that.device.last_reading.mode.heat_only)
+				callback(null, that.device.desired_state.min_set_point);
+			else if (that.device.last_reading.mode.cool_only)
+				callback(null, that.device.desired_state.max_set_point);
+			else 
+				callback(null, that.device.desired_state.min_set_point);
+			
 		})
 		.on('set', function (value, callback) {
-			that.updateWinkProperty(callback, ["min_set_point", "max_set_point"], [value, value + 0.5555556]);
-		});
+			if (that.device.last_reading.mode.heat_only)
+				that.updateWinkProperty(callback, ["min_set_point", "max_set_point"], [value, null]);
+			else if (that.device.last_reading.mode.cool_only)
+				that.updateWinkProperty(callback, ["min_set_point", "max_set_point"], [null, value]);
+			else if (that.device.last_reading.mode.auto) {
+					if (that.device.last_reading.heat_active)
+						that.updateWinkProperty(callback, ["min_set_point", "max_set_point"], [value, null]);
+					else if (that.device.last_reading.cool_active)
+						that.updateWinkProperty(callback, ["min_set_point", "max_set_point"], [null, value]);
+						}
+			else 
+				callback (null)
+		}
+		
+		);
 
 	this
 		.getService(Service.Thermostat)
@@ -134,7 +158,7 @@ function WinkThermostatAccessory(platform, device) {
 		.on('set', function (value, callback) {
 			that.updateWinkProperty(callback, "min_set_point", value);
 		});
-
+//		;
 	this
 		.getService(Service.Thermostat)
 		.getCharacteristic(Characteristic.CoolingThresholdTemperature)
@@ -144,7 +168,7 @@ function WinkThermostatAccessory(platform, device) {
 		.on('set', function (value, callback) {
 			that.updateWinkProperty(callback, "max_set_point", value);
 		});
-
+//		;
 	if (that.device.last_reading.humidity !== undefined)
 		this
 			.getService(Service.Thermostat)
@@ -179,6 +203,12 @@ function WinkThermostatAccessory(platform, device) {
 }
 
 var loadData = function () {
+	
+	 this.getService(Service.AccessoryInformation)
+          .setCharacteristic(Characteristic.Manufacturer, this.device.device_manufacturer)
+          .setCharacteristic(Characteristic.Model, this.device.model_name)
+          .setCharacteristic(Characteristic.SerialNumber, this.entity_id);
+	
 	this
 		.getService(Service.Thermostat)
 		.getCharacteristic(Characteristic.CurrentHeatingCoolingState)
@@ -192,6 +222,7 @@ var loadData = function () {
 	this
 		.getService(Service.Thermostat)
 		.getCharacteristic(Characteristic.CurrentTemperature)
+		.setProps({ minValue: 4.5, maxValue: 35, minStep: 0.1 })
 		.getValue();
 
 	this

@@ -1,4 +1,4 @@
-var wink = require('wink-js');
+var wink = require('wink-jsV2');
 var inherits = require('util').inherits;
 
 /*
@@ -29,7 +29,9 @@ module.exports.WinkSecurityAccessory = WinkSecurityAccessory;
 function WinkSecurityAccessory(platform, device) {
 	WinkAccessory.call(this, platform, device, device.camera_id);
 
+
 	var that = this;
+		
 		this
 			.addService(Service.SecuritySystem)
 			.getCharacteristic(Characteristic.SecuritySystemCurrentState)
@@ -99,23 +101,83 @@ function WinkSecurityAccessory(platform, device) {
 
 
 //			.on('set', function (value, callback) {
-//				that.updateWinkProperty(callback, "mode", value);
+//				console.log("Canary currenlty set to", that.device.last_reading.mode),
+//				console.log("Setting Canary to", value),
+//				that.updateWinkProperty(callback, "mode", value),
+//				console.log("Canary set to", that.device.desired_state.mode);
 //			}
 //			)
 //			;
 
-//		.on('set', function (value, callback) {
-//				if (Characteristic.SecuritySystemTargetState.NIGHT_ARM)
-//					that.updateWinkProperty(callback, "mode", "night");
-//				else if (Characteristic.SecuritySystemTargetState.AWAY_ARM)
-//					that.updateWinkProperty(callback, "mode", "away");
-//				else
-//					that.updateWinkProperty(callback, "mode", "home");
-//				}
-//				)
+			.on('set', function (value, callback) { 
+				console.log("Canary currently set to", that.device.last_reading.mode)
+				console.log("Set Canary to", value)
+				switch (value) {
+				case 2:
+					console.log("Setting Canary to Night"),
+//					callback(null, that.device.desired_state.mode.night)
+					that.updateWinkProperty(callback, "mode", "night");
+//					wink.device_group(this.deviceGroup).device_id(this.deviceId).update.mode.night;
+//					var request = require('request');
+//					var dataString = '{ "desired_state": { "mode": "night" } }';
+//					var options = {
+//   					url: '\https://winkapi.quirky.com/cameras/42926/desired_state',
+//    					method: 'PUT',
+//    					body: dataString
+//						};
+//					function callback(error, response, body) {
+//    				if (!error && response.statusCode == 200) {
+//       			 	console.log(body);
+//    				}
+//					}
+//					request(options, callback);
+					break;
+				case 1:
+					console.log("Setting Canary to Away"),
+//					callback(null, that.device.desired_state.mode.away)
+					that.updateWinkProperty(callback, "mode", "away");
+//					wink.device_group(this.deviceGroup).device_id(this.deviceId).update.mode.away;
+//					var request = require('request');
+//					var dataString = '{ "desired_state": { "mode": "away" } }';
+//					var options = {
+//    					url: '\https://winkapi.quirky.com/cameras/42926/desired_state',
+//    					method: 'PUT',
+//    					body: dataString
+//						};
+//					function callback(error, response, body) {
+//    				if (!error && response.statusCode == 200) {
+//       			 	console.log(body);
+//    				}
+//					}
+//					request(options, callback);
+//					break;
+					break;
+				case 0:
+					console.log("Setting Canary to Home"),
+//					callback(null, that.device.desired_state.mode.home)
+					that.updateWinkProperty(callback, "mode", "home");
+//					wink.device_group(this.deviceGroup).device_id(this.deviceId).update.mode.home;
+//					var request = require('request');
+//					var dataString = '{ "desired_state": { "mode": "home" } }';
+//					var options = {
+//    					url: '\https://winkapi.quirky.com/cameras/42926/desired_state',
+//    					method: 'PUT',
+//    					body: dataString
+//						};
+//					function callback(error, response, body) {
+//    				if (!error && response.statusCode == 200) {
+//       			 	console.log(body);
+//    				}
+//					}
+//					request(options, callback);
+					break; 
+				}
+				console.log("Canary State = ", that.device.desired_state.mode)	
+				}
+				)
 
-//			.on('set', function (value, callback) {
-//			switch (value) {
+//			.on('set', function (callback) {
+//			switch (that.device.desired_state.desired_mode) {
 //				case Characteristic.SecuritySystemTargetState.STAY_ARM:
 //					that.updateWinkProperty(callback, ["mode", "private"], ["home", false]);
 //					break;
@@ -129,26 +191,32 @@ function WinkSecurityAccessory(platform, device) {
 //			}
 //			)
 
-			.on('set', function (value, callback) {
-			switch (value) {
-				case Characteristic.SecuritySystemTargetState.STAY_ARM:
-					that.updateWinkProperty(callback, "mode", "home");
-					break;
-				case Characteristic.SecuritySystemTargetState.AWAY_ARM:
-					that.updateWinkProperty(callback, "mode", "away");
-					break;
-				case Characteristic.SecuritySystemTargetState.NIGHT_ARM:
-					that.updateWinkProperty(callback, "mode", "night");
-					break;
-			}
-			}
-			)
+//					.on('set', function (value, callback) {
+//			switch (value) {
+//				case Characteristic.SecuritySystemTargetState.STAY_ARM:
+//					that.updateWinkProperty(callback, "mode", "home");
+//					break
+//				case Characteristic.SecuritySystemTargetState.AWAY_ARM:
+//					that.updateWinkProperty(callback, "mode", "away");
+//					break;
+//				case Characteristic.SecuritySystemTargetState.NIGHT_ARM:
+//					that.updateWinkProperty(callback, "mode", "night");
+//					break;
+//			}
+//			}
+//			)
+
 			;
 
 	this.loadData();
 }
 
 var loadData = function () {
+	 this.getService(Service.AccessoryInformation)
+          .setCharacteristic(Characteristic.Manufacturer, this.device.device_manufacturer)
+          .setCharacteristic(Characteristic.Model, this.device.model_name)
+          .setCharacteristic(Characteristic.SerialNumber, this.entity_id);
+	
 	this.getService(Service.SecuritySystem)
 		.getCharacteristic(Characteristic.SecuritySystemCurrentState)
 		.getValue();

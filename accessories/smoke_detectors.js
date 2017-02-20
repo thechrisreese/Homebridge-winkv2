@@ -1,3 +1,4 @@
+var wink = require('wink-jsV2');
 var inherits = require('util').inherits;
 
 var WinkAccessory, Accessory, Service, Characteristic, uuid;
@@ -94,6 +95,11 @@ function WinkSmokeDetectorAccessory(platform, device) {
 }
 
 var loadData = function () {
+	this.getService(Service.AccessoryInformation)
+          .setCharacteristic(Characteristic.Manufacturer, this.device.device_manufacturer)
+          .setCharacteristic(Characteristic.Model, this.device.model_name)
+          .setCharacteristic(Characteristic.SerialNumber, this.entity_id);
+	
 	if (this.device.last_reading.co_detected !== undefined) {
 		this.getService(Service.CarbonMonoxideSensor)
 			.getCharacteristic(Characteristic.CarbonMonoxideDetected)

@@ -1,0 +1,100 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "wink-js@>=0.1.0 <1.0.0",
+        "scope": null,
+        "escapedName": "wink-js",
+        "name": "wink-js",
+        "rawSpec": ">=0.1.0 <1.0.0",
+        "spec": ">=0.1.0 <1.0.0",
+        "type": "range"
+      },
+      "/Users/reeseserver/.nvm/versions/node/v6.3.1/lib/node_modules/homebridge-winkv2"
+    ]
+  ],
+  "_from": "wink-jsV2@>=0.1.0 <1.0.0",
+  "_id": "wink-jsV2@0.0.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/homebridge-winkv2/wink-js",
+  "_nodeVersion": "5.1.0",
+  "_npmUser": {
+    "name": "",
+    "email": ""
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "wink-jsV2@>=0.0.1 <1.0.0",
+    "scope": null,
+    "escapedName": "wink-jsV2",
+    "name": "wink-jsV2",
+    "rawSpec": ">=0.0.1 <1.0.0",
+    "spec": ">=0.0.1 <1.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/homebridge-winkv2"
+  ],
+  "_resolved": "",
+  "_shasum": "",
+  "_shrinkwrap": null,
+  "_spec": "wink-jsV2@>=0.0.1 <1.0.0",
+  "_where": "/Users/reeseserver/.nvm/versions/node/v6.3.1/lib/node_modules/homebridge-winkv2",
+  "bugs": {
+    "url": ""
+  },
+  "dependencies": {
+    "async": "*",
+    "config-file": "~0.3.0",
+    "debug": ""
+  },
+  "description": "Wink API wrapper",
+  "devDependencies": {
+    "chai": "~2.2.0",
+    "grunt": "~0.4.5",
+    "grunt-apimock": "~0.1.2",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-jshint": "0.11.1",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-env": "~0.4.4",
+    "grunt-mocha-test": "0.12.7",
+    "mocha": "~2.2.4"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "",
+    "tarball": ""
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "gitHead": "",
+  "homepage": "",
+  "keywords": [
+    "wink",
+    "home automation",
+    "wink api"
+  ],
+  "license": "GPL",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "",
+      "email": ""
+    }
+  ],
+  "name": "wink-jsV2",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha --recursive --no-timeouts test"
+  },
+  "version": "0.0.1"
+}

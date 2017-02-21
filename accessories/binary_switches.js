@@ -1,4 +1,4 @@
-var wink = require('wink-jsV2');
+var wink = require('wink-jsv2');
 var inherits = require('util').inherits;
 
 var WinkAccessory, Service, Characteristic, Accessory, uuid;

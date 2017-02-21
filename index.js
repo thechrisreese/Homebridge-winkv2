@@ -1,5 +1,5 @@
 //
-var wink = require('wink-jsV2');
+var wink = require('wink-jsv2');
 
 process.env.WINK_NO_CACHE = true;
 
